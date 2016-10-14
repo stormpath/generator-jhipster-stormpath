@@ -10,7 +10,7 @@ This is a [JHipster](http://jhipster.github.io/) module, that is meant to be use
 
 This module installs Stormpath's Spring Boot, Spring Security and AngularJS support and configures everything for you.
 
-![](https://raw.githubusercontent.com/stormpath/generator-jhipster-stormpath/master/static/yo-jhipster-stormpath.gif =800x)
+<img src="https://raw.githubusercontent.com/stormpath/generator-jhipster-stormpath/master/static/yo-jhipster-stormpath.gif" width="800">
 
 You will need a [free Stormpath account](https://api.stormpath.com/register) and API keys installed to use your application after installing this module.
 
