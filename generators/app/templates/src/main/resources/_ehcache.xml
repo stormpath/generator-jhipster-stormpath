@@ -1,0 +1,13 @@
+<!-- Stormpath cache entries -->
+    <cache name="com.stormpath.sdk.tenant.Tenant" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.application.Application" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.application.ApplicationAccountStoreMapping" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.directory.Directory" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.servlet.nonces" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.oauth.AccessToken" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.provider.Provider" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.account.Account" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.group.Group" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.group.GroupMembership" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.directory.CustomData" timeToLiveSeconds="3600"/>
+    <cache name="com.stormpath.sdk.oauth.RefreshToken" timeToLiveSeconds="3600"/>

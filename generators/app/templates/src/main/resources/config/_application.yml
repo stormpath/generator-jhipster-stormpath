@@ -1,0 +1,8 @@
+
+# Stormpath configuration
+stormpath:
+    web:
+        me:
+            expand:
+                groups: true
+                customData: true

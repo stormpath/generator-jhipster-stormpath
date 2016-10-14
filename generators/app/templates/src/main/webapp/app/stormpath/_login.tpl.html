@@ -1,0 +1,51 @@
+<style>
+    .btn.btn-social {
+        margin-right: 7px;
+        min-width: 100px;
+    }
+    .btn.btn-facebook {
+        color: white;
+        background-color: #3B5998;
+        border-color: #37528C;
+    }
+    .btn.btn-facebook:hover,
+    .btn.btn-facebook:focus {
+        color: white;
+        background-color: #2F487B;
+        border-color: #2F487B;
+    }
+    .btn.btn-google {
+        color: white;
+        background-color: #dc4e41;
+        border-color: #C1453A;
+    }
+    .btn.btn-google:hover,
+    .btn.btn-google:focus {
+        color: white;
+        background-color: #C74539;
+        border-color: #AF4138;
+    }
+    .sp-loading {
+        text-align: center;
+    }
+</style>
+<div ng-show="!viewModel" class="sp-loading">
+    Loading...
+</div>
+<form ng-hide="accepted || !viewModel" ng-submit="submit()">
+    <div class="form-group" ng-repeat="field in viewModel.form.fields">
+        <label for="sp-{{field.name}}" class="control-label">{{field.label}}</label>
+        <input class="form-control" name="{{field.name}}" id="sp-{{field.name}}" type="{{field.type}}" ng-model="formModel[field.name]" placeholder="{{field.placeholder}}" ng-disabled="posting" ng-required="field.required">
+    </div>
+    <div class="form-group">
+        <p class="text-danger" ng-show="error" ng-bind="error"></p>
+        <button type="submit" class="btn btn-primary" ng-disabled="posting">Login</button>
+        <a ng-click="vm.forgotPassword()" class="pull-right">Forgot Password</a>
+    </div>
+    <div class="form-group" ng-show="viewModel.accountStores.length">
+        <p>Or login with:</p>
+        <button ng-repeat="accountStore in viewModel.accountStores" type="button" class="btn btn-social btn-{{accountStore.provider.providerId}}" sp-social-login="{{accountStore.provider.providerId}}" sp-client-id="{{accountStore.provider.clientId}}" sp-scope="{{accountStore.provider.scope}}">
+            {{providerName}}
+        </button>
+    </div>
+</form>

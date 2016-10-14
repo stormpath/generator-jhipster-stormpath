@@ -1,0 +1,73 @@
+<style>
+    .btn.btn-social {
+        margin-right: 7px;
+        min-width: 100px;
+    }
+
+    .btn.btn-facebook {
+        color: white;
+        background-color: #3B5998;
+        border-color: #37528C;
+    }
+    .btn.btn-facebook:hover,
+    .btn.btn-facebook:focus {
+        color: white;
+        background-color: #2F487B;
+        border-color: #2F487B;
+    }
+
+    .btn.btn-google {
+        color: white;
+        background-color: #dc4e41;
+        border-color: #C1453A;
+    }
+    .btn.btn-google:hover,
+    .btn.btn-google:focus {
+        color: white;
+        background-color: #C74539;
+        border-color: #AF4138;
+    }
+
+    .sp-loading {
+        text-align: center;
+    }
+</style>
+
+<div class="row">
+    <div class="col-xs-12">
+        <p class="alert alert-success" ng-show="created && !enabled">Your account has been created.  Please check your email for a verification link.</p>
+        <p ng-show="created && !enabled" class="pull-right">
+            <a href="#/home">Back to Login</a>
+        </p>
+        <p class="alert alert-success" ng-show="created && enabled && !authenticating">Your account has been created.  <a href="#/home">Login Now</a>.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div ng-show="!viewModel" class="sp-loading">
+            Loading...
+        </div>
+        <form ng-hide="!viewModel || (created && !authenticating)" ng-submit="submit()">
+            <div class="form-group" ng-repeat="field in viewModel.form.fields">
+                <label for="sp-{{field.name}}" class="control-label">{{field.label}}</label>
+                    <input class="form-control" name="{{field.name}}" id="sp-{{field.name}}" type="{{field.type}}" ng-model="formModel[field.name]"
+                           placeholder="{{field.placeholder}}" ng-disabled="creating" ng-required="field.required">
+                <div ng-if="field.name === 'password'">
+                    <password-strength-bar password-to-check="formModel.password"></password-strength-bar>
+                </div>
+            </div>
+            <div class="form-group">
+                <p class="alert alert-danger" ng-show="error" ng-bind="error"></p>
+                <button type="submit" class="btn btn-primary" ng-disabled="creating">Register</button>
+            </div>
+            <div class="form-group" ng-show="viewModel.accountStores.length">
+                <p>Or register with:</p>
+                <button ng-repeat="accountStore in viewModel.accountStores" type="button" class="btn btn-social btn-{{accountStore.provider.providerId}}"
+                        sp-social-login="{{accountStore.provider.providerId}}" sp-client-id="{{accountStore.provider.clientId}}"
+                        sp-scope="{{accountStore.provider.scope}}">
+                    {{providerName}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
