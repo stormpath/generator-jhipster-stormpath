@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var packagejs = require(__dirname + '/../../package.json');
 var fs = require('fs');
+var semver = require('semver');
 
 // Stores JHipster variables
 var jhipsterVar = {moduleName: 'stormpath'};
