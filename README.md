@@ -1,4 +1,4 @@
-# generator-jhipster-stormpath
+# Stormpath Module for JHipster
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > JHipster module, Stormpath API integration for Authorization
 
