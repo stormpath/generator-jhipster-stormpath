@@ -41,7 +41,9 @@ module.exports = yeoman.Base.extend({
         },
         displayLogo: function () {
             // Have Yeoman greet the user.
-            this.log('Welcome to the ' + chalk.red('JHipster Stormpath') + ' generator! ' + chalk.yellow('v' + packagejs.version + '\n'));
+            this.log('Welcome to the ' + chalk.blue('JHipster Stormpath') + ' generator! ' + chalk.yellow('v' + packagejs.version) + '\n');
+            this.log(chalk.green('Please check your project into Git before you install Stormpath!'));
+            this.log(chalk.green('That way, you can easily undo this installation using: git checkout .') + '\n');
         },
         checkJHVersion: function () {
             var supportedJHVersion = packagejs.dependencies['generator-jhipster'];
