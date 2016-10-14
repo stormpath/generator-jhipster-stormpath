@@ -48,7 +48,7 @@ module.exports = yeoman.Base.extend({
                 this.env.error(chalk.red.bold('ERROR!') + ` I support only JHipster versions greater than ${supportedJHVersion}...
           If you want to use Stormpath with an older JHipster version, please contact support@stormpath.com.`);
             }
-        },
+        }
     },
 
     prompting: function () {
