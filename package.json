@@ -4,7 +4,13 @@
   "description": "Stormpath API integration for Authorization",
   "keywords": [
     "yeoman-generator",
-    "jhipster-module"
+    "jhipster-module",
+    "stormpath",
+    "angularjs",
+    "spring-boot",
+    "spring-security",
+    "javascript",
+    "java"
   ],
   "homepage": "https://github.com/stormpath/generator-jhipster-stormpath",
   "author": {
