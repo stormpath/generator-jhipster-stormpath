@@ -248,8 +248,7 @@ module.exports = yeoman.Base.extend({
 
     end: function () {
         if (this.installStormpath) {
-            this.log('\n' + chalk.bold.green('Stormpath enabled for authorization'));
-            this.log('\n' + chalk.bold.green('I\'m running gulp install now'));
+            this.log('\n' + chalk.bold.green("Stormpath enabled. Running 'gulp install' to update dependencies...\n"));
         }
     }
 });
