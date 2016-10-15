@@ -44,6 +44,8 @@ module.exports = yeoman.Base.extend({
             this.log('Welcome to the ' + chalk.blue('JHipster Stormpath') + ' generator! ' + chalk.yellow('v' + packagejs.version) + '\n');
             this.log(chalk.green('Please check your project into Git before you install Stormpath!'));
             this.log(chalk.green('That way, you can easily undo this installation using: git checkout .') + '\n');
+            this.log(chalk.yellow('NOTE: ') + 'You need to have a Stormpath account for this module to work!\n');
+            this.log('Register at https://api.stormpath.com/register, generate API keys and copy to ~/.stormpath/apiKey.properties.');
         },
         checkJHVersion: function () {
             var supportedJHVersion = packagejs.dependencies['generator-jhipster'];
@@ -51,6 +53,8 @@ module.exports = yeoman.Base.extend({
                 this.env.error(chalk.red.bold('ERROR!') + ` I support only JHipster versions greater than ${supportedJHVersion}...
           If you want to use Stormpath with an older JHipster version, please contact support@stormpath.com.`);
             }
+
+            var security
         }
     },
 
@@ -111,6 +115,12 @@ module.exports = yeoman.Base.extend({
                     this.installStormpath = false;
                     return;
                 }
+            }
+
+            if (!jhipsterVar.authenticationType === 'jwt') {
+                this.log('\n' + chalk.bold.red('Stormpath can only be installed for JWT authentication.'));
+                this.installStormpath = false;
+                return;
             }
 
             // add dependencies
