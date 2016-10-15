@@ -1,7 +1,7 @@
 package <%=packageName%>.config;
 
-import com.stormpath.example.security.*;
-import com.stormpath.example.security.jwt.*;
+import <%=packageName%>.security.*;
+import <%=packageName%>.security.jwt.*;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
