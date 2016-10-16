@@ -41,6 +41,32 @@ module.exports = yeoman.Base.extend({
         },
         displayLogo: function () {
             // Have Yeoman greet the user.
+            this.log(chalk.blue("\n" +
+                "ssssssssssssssssssssssssssssssssssssssssssssssssss\n" +
+                "ssssssssssssssssssssssssssssssssssssssssssssssssss\n" +
+                "sssssssssssssssso+:-.``    ``.-:+osssssssssssssssy\n" +
+                "yyyyyyyyyyyys+-`                  `-+syyyyyyyyyyyy\n" +
+                "yyhyyyhyyys:                    `.--:/syyyyhyyyyyy\n" +
+                "yyyyyyyys-             `.-/+osyyyyyyyys:-syyyyyyyy\n" +
+                "yyyyyyy/           .:+syyyyyyyyyyyyys-    /yyyyyyy\n" +
+                "yyyyyy-         .+yyyyyyyyyyyyyyyys-       -yyyyyy\n" +
+                "yyyyy-        `oyyyyyyyyyyyyyyyyyy+`        -yyyyy\n" +
+                "yyyy/        -yyyyyyyyyyyyyyyyyyyyys.        /yyyy\n" +
+                "yyhy`       `yhyyyyyyo:.``.:oyyhyhyyy`       `yyyy\n" +
+                "yyyo        /yyyyyyy/        /yyyyyyy/        oyyy\n" +
+                "hyy+        oyyyyyyy`        `yyyyyhyo        +yyy\n" +
+                "yyyo        /yyyyyyy/        /yyyyyyy/        oyyy\n" +
+                "yyyy`       `yyyyyyyyo:.``.:oyyyyyyyy`       `yyyy\n" +
+                "yyyy/        .syyyyyyyyhyyyyyhyhyyyy-        /yyyy\n" +
+                "yyyyy-        `+yyyyyyyyyyyyyyyyyyo`        -yyyyy\n" +
+                "yyyyyy-       -syyyyyyyyyyyyyyyy+.         -yyyyyy\n" +
+                "yyyyyyy/    -syyyyyyyyyyyyys+:.           /yyyyyyy\n" +
+                "yyyyyyyys-:syyyyyyyyso+/-.`             -syyyyyyyy\n" +
+                "yyyyyyyyyyys/:--.`                    :syyyyyyyyyy\n" +
+                "yyyyyyyyyyyyy+:`                  `:+yyyyyyyyyyyyy\n" +
+                "yyyyyyyyyyyyyyyys+/:.``    ``.:/+syyyyyyyyyyyyyyyy\n" +
+                "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\n" +
+                "hyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyh\n"));
             this.log('Welcome to the ' + chalk.blue('JHipster Stormpath') + ' generator! ' + chalk.yellow('v' + packagejs.version) + '\n');
             this.log(chalk.green('Please check your project into Git before you install Stormpath!'));
             this.log(chalk.green('That way, you can easily undo this installation using: git checkout .') + '\n');
