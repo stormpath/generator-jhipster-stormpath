@@ -38,6 +38,10 @@ module.exports = yeoman.Base.extend({
                 },
                 this.options.testmode ? {local: require.resolve('generator-jhipster/generators/modules')} : null
             );
+
+            if (args === 'default' || args === 'automated') {
+                this.stormpathDefault = 'automated';
+            }
         },
         displayLogo: function () {
             // Have Yeoman greet the user.
@@ -64,7 +68,8 @@ module.exports = yeoman.Base.extend({
             this.log(chalk.green('Please check your project into Git before you install Stormpath!'));
             this.log(chalk.green('That way, you can easily undo this installation using: git checkout .') + '\n');
             this.log(chalk.green('NOTE: ') + 'You need to have a Stormpath account for this module to work!');
-            this.log('Register at https://api.stormpath.com/register, generate API keys, and \ncopy to ~/.stormpath/apiKey.properties.\n');
+            this.log('      Register at https://api.stormpath.com/register, generate API keys,');
+            this.log('      and copy to ~/.stormpath/apiKey.properties.\n');
         },
         checkJHVersion: function () {
             var supportedJHVersion = packagejs.dependencies['generator-jhipster'];
@@ -89,12 +94,17 @@ module.exports = yeoman.Base.extend({
             }
         ];
 
-        this.prompt(prompts, function (props) {
-            this.props = props;
-            // To access props later use this.props.someOption;
-
+        if (this.stormpathDefault === 'automated') {
+            this.props = {installStormpath: true};
             done();
-        }.bind(this));
+        } else {
+            this.prompt(prompts, function (props) {
+                this.props = props;
+                // To access props later use this.props.someOption;
+
+                done();
+            }.bind(this));
+        }
     },
 
     writing: {
@@ -203,9 +213,9 @@ module.exports = yeoman.Base.extend({
                 jhipsterFunc.replaceContent(this.webappDir + 'app/admin/tracker/tracker.service.js', ", 'AuthServerProvider'", '');
                 jhipsterFunc.replaceContent(this.webappDir + 'app/admin/tracker/tracker.service.js', ", AuthServerProvider", '');
                 jhipsterFunc.replaceContent(this.webappDir + 'app/admin/tracker/tracker.service.js', "var authToken = AuthServerProvider.getToken();\n" +
-                "            if(authToken){\n" +
-                "                url += '?access_token=' + authToken;\n" +
-                "            }", '');
+                    "            if(authToken){\n" +
+                    "                url += '?access_token=' + authToken;\n" +
+                    "            }", '');
             }
 
             // remove auth.interceptor.js and auth-expired from http.config
@@ -238,7 +248,7 @@ module.exports = yeoman.Base.extend({
             jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "['stateHandler'", "['stateHandler', '$user'");
             jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "run(stateHandler", "run(stateHandler, $user");
             jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "stateHandler.initialize();\n", "stateHandler.initialize();\n" +
-            "        // check to see if Stormpath user exists\n        $user.get();\n");
+                "        // check to see if Stormpath user exists\n        $user.get();\n");
 
             // remove Auth from app.state.js
             jhipsterFunc.replaceContent(this.webappDir + 'app/app.state.js', "                authorize: ['Auth',\n" +

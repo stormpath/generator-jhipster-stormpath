@@ -8,8 +8,8 @@ var deps = [
   [helpers.createDummyGenerator(), 'jhipster:modules']
 ];
 
-describe('JHipster generator stormpath', function () {
-  describe('simple test', function () {
+describe('JHipster generator Stormpath', function () {
+  describe('Automated build', function () {
     before(function (done) {
       helpers
         .run(path.join( __dirname, '../generators/app'))
@@ -20,15 +20,15 @@ describe('JHipster generator stormpath', function () {
           testmode: true
         })
         .withPrompts({
-          message: 'simple message to say hello'
+          stormpathDefault: 'automated'
         })
         .withGenerators(deps)
         .on('end', done);
     });
 
-    it('generate dummy.txt file', function () {
+    it('generates stormpath.config.js file', function () {
       assert.file([
-        'dummy.txt'
+        'src/main/webapp/app/blocks/config/stormpath.config.js'
       ]);
     });
   });
