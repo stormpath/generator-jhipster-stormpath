@@ -120,6 +120,8 @@ module.exports = yeoman.Base.extend({
             this.webTemplateDir = this.templatePath('src/main/webapp/');
             this.javaDir = jhipsterVar.javaDir;
             this.resourceDir = jhipsterVar.resourceDir;
+            this.testDir = this.resourceDir + '../../test/';
+
             this.copyFiles = function (files) {
                 files.forEach(function (file) {
                     jhipsterFunc.copyTemplate(file.from, file.to, file.type ? file.type : 'template', this, file.interpolate ? {'interpolate': file.interpolate} : undefined);
@@ -168,6 +170,9 @@ module.exports = yeoman.Base.extend({
             var ehcacheEntries = fs.readFileSync(this.resourceTemplateDir + '_ehcache.xml', 'utf8');
             var ehCacheLocation = this.resourceDir + 'ehcache.xml';
             jhipsterFunc.rewriteFile(ehCacheLocation, 'ehcache-add-entry', ehcacheEntries);
+
+            // copy this file to test directory
+            this.copy(ehCacheLocation, this.testDir + 'resources');
 
             // make Stormpath log at WARN level
             jhipsterFunc.replaceContent(this.resourceDir + 'logback-spring.xml', '<logger name="javax.activation" level="WARN"/>', '<logger name="com.stormpath" level="WARN"/>\n    <logger name="javax.activation" level="WARN"/>');
@@ -265,6 +270,30 @@ module.exports = yeoman.Base.extend({
             ];
 
             this.copyFiles(templates);
+
+            this.jsTestDir = this.testDir + 'javascript';
+
+            // Delete tests no longer used
+            var testsToDelete = [
+                // unit tests
+                this.jsTestDir + 'spec/app/account/active',
+                this.jsTestDir + 'spec/app/account/password/password.controller.spec.js',
+                this.jsTestDir + 'spec/app/account/register',
+                this.jsTestDir + 'spec/app/account/reset',
+                this.jsTestDir + 'spec/app/account/settings',
+                this.jsTestDir + 'spec/app/components',
+                this.jsTestDir + 'spec/app/services',
+                // e2e tests
+                this.jsTestDir + '/e2e/admin'
+            ];
+
+            testsToDelete.forEach(function (path) {
+                if (path.endsWith('.js')) {
+                    fs.unlinkSync(path);
+                } else {
+                    removeDirectory(path);
+                }
+            });
         }
     },
 
