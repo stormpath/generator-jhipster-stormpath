@@ -42,36 +42,29 @@ module.exports = yeoman.Base.extend({
         displayLogo: function () {
             // Have Yeoman greet the user.
             this.log(chalk.blue("\n" +
-                "ssssssssssssssssssssssssssssssssssssssssssssssssss\n" +
-                "ssssssssssssssssssssssssssssssssssssssssssssssssss\n" +
-                "sssssssssssssssso+:-.``    ``.-:+osssssssssssssssy\n" +
-                "yyyyyyyyyyyys+-`                  `-+syyyyyyyyyyyy\n" +
-                "yyhyyyhyyys:                    `.--:/syyyyhyyyyyy\n" +
-                "yyyyyyyys-             `.-/+osyyyyyyyys:-syyyyyyyy\n" +
-                "yyyyyyy/           .:+syyyyyyyyyyyyys-    /yyyyyyy\n" +
-                "yyyyyy-         .+yyyyyyyyyyyyyyyys-       -yyyyyy\n" +
-                "yyyyy-        `oyyyyyyyyyyyyyyyyyy+`        -yyyyy\n" +
-                "yyyy/        -yyyyyyyyyyyyyyyyyyyyys.        /yyyy\n" +
-                "yyhy`       `yhyyyyyyo:.``.:oyyhyhyyy`       `yyyy\n" +
-                "yyyo        /yyyyyyy/        /yyyyyyy/        oyyy\n" +
-                "hyy+        oyyyyyyy`        `yyyyyhyo        +yyy\n" +
-                "yyyo        /yyyyyyy/        /yyyyyyy/        oyyy\n" +
-                "yyyy`       `yyyyyyyyo:.``.:oyyyyyyyy`       `yyyy\n" +
-                "yyyy/        .syyyyyyyyhyyyyyhyhyyyy-        /yyyy\n" +
-                "yyyyy-        `+yyyyyyyyyyyyyyyyyyo`        -yyyyy\n" +
-                "yyyyyy-       -syyyyyyyyyyyyyyyy+.         -yyyyyy\n" +
-                "yyyyyyy/    -syyyyyyyyyyyyys+:.           /yyyyyyy\n" +
-                "yyyyyyyys-:syyyyyyyyso+/-.`             -syyyyyyyy\n" +
-                "yyyyyyyyyyys/:--.`                    :syyyyyyyyyy\n" +
-                "yyyyyyyyyyyyy+:`                  `:+yyyyyyyyyyyyy\n" +
-                "yyyyyyyyyyyyyyyys+/:.``    ``.:/+syyyyyyyyyyyyyyyy\n" +
-                "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\n" +
-                "hyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyh\n"));
+                "                   `.-::::-.`               \n" +
+                "               -/shddddddddddhs/-           \n" +
+                "            `+hddddddddddddddhyso+`         \n" +
+                "          `+hddddddddhyo/:.`      -s+`      \n" +
+                "         -hddddddds/.           -sdddh-     \n" +
+                "        -hddddddo`             /ddddddh-    \n" +
+                "       `hdddddh-                /hdddddh`   \n" +
+                "       +dddddd/      /shhs/      /dddddd/   \n" +
+                "       sdddddd`     sdddddds     `dddddds   \n" +
+                "       sdddddd`     sdddddds     `dddddds   \n" +
+                "       /dddddd/      /shhs/      /dddddd/   \n" +
+                "       `hdddddh/                -hdddddh`   \n" +
+                "        -hdddddd/             .oddddddh-    \n" +
+                "         -hddds-           ./sdddddddh-     \n" +
+                "          `+s-      `.:/oyhddddddddh+`      \n" +
+                "             `+osyhddddddddddddddh+`        \n" +
+                "               -/shddddddddddhs/-           \n" +
+                "                   `.-::::-.`               \n"));
             this.log('Welcome to the ' + chalk.blue('JHipster Stormpath') + ' generator! ' + chalk.yellow('v' + packagejs.version) + '\n');
             this.log(chalk.green('Please check your project into Git before you install Stormpath!'));
             this.log(chalk.green('That way, you can easily undo this installation using: git checkout .') + '\n');
-            this.log(chalk.yellow('NOTE: ') + 'You need to have a Stormpath account for this module to work!');
-            this.log('Register at https://api.stormpath.com/register, generate API keys and copy to ~/.stormpath/apiKey.properties.\n');
+            this.log(chalk.green('NOTE: ') + 'You need to have a Stormpath account for this module to work!');
+            this.log('Register at https://api.stormpath.com/register, generate API keys, and \ncopy to ~/.stormpath/apiKey.properties.\n');
         },
         checkJHVersion: function () {
             var supportedJHVersion = packagejs.dependencies['generator-jhipster'];
@@ -135,7 +128,7 @@ module.exports = yeoman.Base.extend({
             if (!this.installStormpath) {
                 return;
             } else {
-                // check to see if file exists so we know if module has already been installed
+                // check to see if this module has already been installed
                 try {
                     fs.accessSync(this.webappDir + 'app/services/auth/activate.service.js', fs.F_OK);
                 } catch (e) {
@@ -166,13 +159,15 @@ module.exports = yeoman.Base.extend({
             var stormpathProperties = fs.readFileSync(this.resourceTemplateDir + 'config/_application.yml', 'utf8');
             fs.appendFile(this.resourceDir + 'config/application.yml', stormpathProperties);
 
-            // add EhCache Config
-            var ehcacheEntries = fs.readFileSync(this.resourceTemplateDir + '_ehcache.xml', 'utf8');
-            var ehCacheLocation = this.resourceDir + 'ehcache.xml';
-            jhipsterFunc.rewriteFile(ehCacheLocation, 'ehcache-add-entry', ehcacheEntries);
+            if (jhipsterVar.hibernateCache === 'ehcache') {
+                // add EhCache Config
+                var ehcacheEntries = fs.readFileSync(this.resourceTemplateDir + '_ehcache.xml', 'utf8');
+                var ehCacheLocation = this.resourceDir + 'ehcache.xml';
+                jhipsterFunc.rewriteFile(ehCacheLocation, 'ehcache-add-entry', ehcacheEntries);
 
-            // copy this file to test directory
-            this.copy(ehCacheLocation, this.testDir + 'resources');
+                // duplicate these changes in test EhCache Config
+                jhipsterFunc.replaceContent(this.testDir + 'resources/ehcache.xml', "</ehcache>", '    \n' + ehcacheEntries + '\n</ehcache>');
+            }
 
             // make Stormpath log at WARN level
             jhipsterFunc.replaceContent(this.resourceDir + 'logback-spring.xml', '<logger name="javax.activation" level="WARN"/>', '<logger name="com.stormpath" level="WARN"/>\n    <logger name="javax.activation" level="WARN"/>');
@@ -180,7 +175,9 @@ module.exports = yeoman.Base.extend({
             // Delete files no longer used
             var filesToDelete = [
                 this.webappDir + 'app/account/activate',
-                this.webappDir + 'app/account/password',
+                this.webappDir + 'app/account/password/password.controller.js',
+                this.webappDir + 'app/account/password/password.state.js',
+                this.webappDir + 'app/account/password/password.html',
                 this.webappDir + 'app/account/reset',
                 this.webappDir + 'app/account/settings',
                 this.webappDir + 'app/admin/user-management',
@@ -194,7 +191,7 @@ module.exports = yeoman.Base.extend({
             ];
 
             filesToDelete.forEach(function (path) {
-                if (path.endsWith('.js')) {
+                if (path.endsWith('.js') || path.endsWith('.html')) {
                     fs.unlinkSync(path);
                 } else {
                     removeDirectory(path);
@@ -254,7 +251,7 @@ module.exports = yeoman.Base.extend({
             var templates = [
                 {from: this.javaTemplateDir + 'config/_SecurityConfiguration.java', to: this.javaDir + 'config/SecurityConfiguration.java'},
                 {from: this.webTemplateDir + 'app/account/forgot-password/_forgot-password.html', to: this.webappDir + 'app/account/forgot-password/forgot-password.html'},
-                {from: this.webTemplateDir + 'app/account/forgot-password/_forgot-password.js', to: this.webappDir + 'app/account/forgot-password/forgot-password.js'},
+                {from: this.webTemplateDir + 'app/account/forgot-password/_forgot-password.state.js', to: this.webappDir + 'app/account/forgot-password/forgot-password.state.js'},
                 {from: this.webTemplateDir + 'app/account/register/_register.controller.js', to: this.webappDir + 'app/account/register/register.controller.js'},
                 {from: this.webTemplateDir + 'app/account/register/_register.html', to: this.webappDir + 'app/account/register/register.html'},
                 {from: this.webTemplateDir + 'app/blocks/config/_stormpath.config.js', to: this.webappDir + 'app/blocks/config/stormpath.config.js'},
@@ -271,12 +268,13 @@ module.exports = yeoman.Base.extend({
 
             this.copyFiles(templates);
 
-            this.jsTestDir = this.testDir + 'javascript';
+            this.jsTestDir = this.testDir + 'javascript/';
+            this.jsTestTemplateDir = this.templatePath('src/test/javascript/');
 
             // Delete tests no longer used
             var testsToDelete = [
                 // unit tests
-                this.jsTestDir + 'spec/app/account/active',
+                this.jsTestDir + 'spec/app/account/activate',
                 this.jsTestDir + 'spec/app/account/password/password.controller.spec.js',
                 this.jsTestDir + 'spec/app/account/register',
                 this.jsTestDir + 'spec/app/account/reset',
@@ -294,6 +292,16 @@ module.exports = yeoman.Base.extend({
                     removeDirectory(path);
                 }
             });
+
+            // modify httpBackend.js to change account call path
+            jhipsterFunc.replaceContent(this.jsTestDir + 'spec/helpers/httpBackend.js', 'api\\\/account', 'me');
+
+            // add expectation to password-strength test that navbar.html will be loaded
+            jhipsterFunc.replaceContent(this.jsTestDir + 'spec/app/account/password/password-strength-bar.directive.spec.js',
+                'beforeEach(mockI18nCalls);', 'beforeEach(mockI18nCalls);\n    beforeEach(mockScriptsCalls);');
+
+            // replace account e2e test with one that just verifies the login form
+            this.copyFiles([{from: this.jsTestTemplateDir + 'e2e/account/_account.js', to: this.jsTestDir + 'e2e/account/account.js'}]);
         }
     },
 
