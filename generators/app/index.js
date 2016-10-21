@@ -93,7 +93,6 @@ module.exports = yeoman.Base.extend({
                 default: false
             }
         ];
-
         if (this.stormpathDefault === 'automated') {
             this.props = {installStormpath: true};
             done();
@@ -147,7 +146,6 @@ module.exports = yeoman.Base.extend({
                     return;
                 }
             }
-
             if (jhipsterVar.authenticationType !== 'jwt') {
                 this.log('\n' + chalk.bold.red('Stormpath can only be installed for JWT authentication.'));
                 this.installStormpath = false;
@@ -160,7 +158,6 @@ module.exports = yeoman.Base.extend({
             } else if (jhipsterVar.buildTool == 'gradle') {
                 jhipsterFunc.addGradleDependency('com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.0');
             }
-
             jhipsterFunc.addBowerDependency('stormpath-sdk-angularjs', '1.0.0');
 
             // **** Start of Spring Boot Integration ***** //
@@ -181,7 +178,6 @@ module.exports = yeoman.Base.extend({
 
             // make Stormpath log at WARN level
             jhipsterFunc.replaceContent(this.resourceDir + 'logback-spring.xml', '<logger name="javax.activation" level="WARN"/>', '<logger name="com.stormpath" level="WARN"/>\n    <logger name="javax.activation" level="WARN"/>');
-
             // Delete files no longer used
             var filesToDelete = [
                 this.webappDir + 'app/account/activate',
@@ -207,7 +203,6 @@ module.exports = yeoman.Base.extend({
                     removeDirectory(path);
                 }
             });
-
             // if websockets, remove AuthServiceProvider from tracker.service.js
             if (jhipsterVar.websocket) {
                 jhipsterFunc.replaceContent(this.webappDir + 'app/admin/tracker/tracker.service.js', ", 'AuthServerProvider'", '');
@@ -225,7 +220,6 @@ module.exports = yeoman.Base.extend({
             // delete auth.interceptor.js and auth-expired.interceptor.js
             fs.unlinkSync(this.webappDir + 'app/blocks/interceptor/auth.interceptor.js');
             fs.unlinkSync(this.webappDir + 'app/blocks/interceptor/auth-expired.interceptor.js');
-
             // modify state.handler.js to remove $state, $sessionStorage, Auth, Principal
             var tokensToReplace = ["'$state', ", "'$sessionStorage', ", "'Auth', ", "'Principal', ", "$state, ", "$sessionStorage, ", "Auth, ", "Principal, "];
             var stateHandlerFile = this.webappDir + 'app/blocks/handlers/state.handler.js';
@@ -256,7 +250,6 @@ module.exports = yeoman.Base.extend({
                 "                        return Auth.authorize();\n" +
                 "                    }\n" +
                 "                ],\n", '');
-
             // copy templates from src/main/webapp
             var templates = [
                 {from: this.javaTemplateDir + 'config/_SecurityConfiguration.java', to: this.javaDir + 'config/SecurityConfiguration.java'},
@@ -316,7 +309,7 @@ module.exports = yeoman.Base.extend({
     },
 
     install: function () {
-        if (this.installStormpath) {
+        if (this.installStormpath && !(this.options['skip-install'])) {
             var injectDependenciesAndConstants = function () {
                 this.spawnCommand('gulp', ['install']);
             };

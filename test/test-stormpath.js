@@ -17,10 +17,12 @@ describe('JHipster generator Stormpath', function () {
           fse.copySync(path.join(__dirname, '../test/templates/default'), dir)
         })
         .withOptions({
+          skipInstall: true,
+          force: true,
           testmode: true
         })
         .withPrompts({
-          stormpathDefault: 'automated'
+          installStormpath: true
         })
         .withGenerators(deps)
         .on('end', done);
@@ -30,6 +32,12 @@ describe('JHipster generator Stormpath', function () {
       assert.file([
         'src/main/webapp/app/blocks/config/stormpath.config.js'
       ]);
+    });
+    it('stormpath lib inside pom.xml', function () {
+      assert.fileContent('pom.xml', /com.stormpath.spring/);
+    });
+    it('stormpath lib inside bower.json', function () {
+      assert.fileContent('bower.json', /stormpath-sdk-angularjs/);
     });
   });
 });

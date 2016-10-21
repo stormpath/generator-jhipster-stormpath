@@ -1,25 +1,34 @@
 {
   "generator-jhipster": {
+    "jhipsterVersion": "3.9.1",
     "baseName": "TheForce",
     "packageName": "com.mycompany.theforce",
     "packageFolder": "com/mycompany/theforce",
+    "serverPort": "8080",
     "authenticationType": "jwt",
     "hibernateCache": "ehcache",
-    "clusteredHttpSession": "no",
-    "websocket": "no",
+    "clusteredHttpSession": false,
+    "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "prodDatabaseType": "mysql",
-    "searchEngine": "no",
-    "useSass": false,
+    "searchEngine": false,
+    "messageBroker": false,
     "buildTool": "maven",
-    "frontendBuilder": "gulp",
-    "enableTranslation": true,
     "enableSocialSignIn": false,
-    "rememberMeKey": "2bb60a80889aa6e6767e9ccd8714982681152aa5",
+    "jwtSecretKey": "58328f72edd5dc2089e4829924a69b908d8fd998",
+    "useSass": false,
+    "applicationType": "monolith",
     "testFrameworks": [
       "gatling",
-      "protractor"
+      "protractor",
+      "gatling"
+    ],
+    "jhiPrefix": "jhi",
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
     ]
   }
 }
