@@ -1,8 +1,8 @@
 {
   "generator-jhipster": {
-    "baseName": "sampleMysql",
-    "packageName": "com.mycompany.myapp",
-    "packageFolder": "com/mycompany/myapp",
+    "baseName": "TheForce",
+    "packageName": "com.mycompany.theforce",
+    "packageFolder": "com/mycompany/theforce",
     "authenticationType": "jwt",
     "hibernateCache": "ehcache",
     "clusteredHttpSession": "no",
