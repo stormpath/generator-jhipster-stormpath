@@ -1,0 +1,28 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "baseName": "travisPsqlEsNoi18n",
+    "packageName": "com.mycompany.myapp",
+    "packageFolder": "com/mycompany/myapp",
+    "authenticationType": "jwt",
+    "hibernateCache": "hazelcast",
+    "clusteredHttpSession": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "useSass": true,
+    "buildTool": "maven",
+    "enableTranslation": false,
+    "enableSocialSignIn": false,
+    "jwtSecretKey": "58328f72edd5dc2089e4829924a69b908d8fd998",
+    "testFrameworks": [
+      "gatling",
+      "protractor"
+    ],
+    "serverPort": "8080",
+    "jhiPrefix": "jhi",
+    "travis": true
+  }
+}
