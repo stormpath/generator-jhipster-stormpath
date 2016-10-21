@@ -1,5 +1,5 @@
 addons:
-  firefox: "49.0"
+- firefox: "46.0"
 os:
 - linux
 services:
