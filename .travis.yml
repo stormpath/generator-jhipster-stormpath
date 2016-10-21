@@ -41,10 +41,10 @@ install:
 before_script:
   - chmod +x $JHIPSTER_SCRIPTS/01-generate-project.sh
   - chmod +x $JHIPSTER_SCRIPTS/02-generate-stormpath.sh
-  - chmod +x $JHIPSTER_SCRIPTS/04-tests.sh
-  - chmod +x $JHIPSTER_SCRIPTS/05-run.sh
+  - chmod +x $JHIPSTER_SCRIPTS/03-tests.sh
+  - chmod +x $JHIPSTER_SCRIPTS/04-run.sh
 script:
   - $JHIPSTER_SCRIPTS/01-generate-project.sh
-  - $JHIPSTER_SCRIPTS/03-generate-stormpath.sh
-  - $JHIPSTER_SCRIPTS/04-tests.sh
-  - $JHIPSTER_SCRIPTS/05-run.sh
+  - $JHIPSTER_SCRIPTS/02-generate-stormpath.sh
+  - $JHIPSTER_SCRIPTS/03-tests.sh
+  - $JHIPSTER_SCRIPTS/04-run.sh
