@@ -31,7 +31,7 @@
   gulp.task('pre-test', function () {
     return gulp.src('generators/**/*.js')
       .pipe(istanbul({
-        includeUntested: true
+        includeUntested: false
       }))
       .pipe(istanbul.hookRequire());
   });
@@ -39,10 +39,11 @@
   gulp.task('test', ['pre-test'], function (cb) {
     var mochaErr;
 
-    gulp.src('test/**/*.js')
+    gulp.src('test/**/test-*.js')
       .pipe(plumber())
       .pipe(mocha({reporter: 'spec'}))
       .on('error', function (err) {
+        console.log('err', err);
         mochaErr = err;
       })
       .pipe(istanbul.writeReports())
