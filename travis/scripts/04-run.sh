@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 launchProtractor() {
     retryCount=1
-    maxRetry=10
+    maxRetry=100
     httpUrl="http://localhost:8080"
 
     rep=$(curl -v "$httpUrl")
