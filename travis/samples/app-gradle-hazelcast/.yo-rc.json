@@ -1,22 +1,24 @@
 {
   "generator-jhipster": {
-    "applicationType": "monolith",
-    "baseName": "travisGradle",
-    "packageName": "io.github.jhipster.travis",
-    "packageFolder": "io/github/jhipster/travis",
+    "jhipsterVersion": "3.9.1",
+    "baseName": "gradleHazel",
+    "packageName": "com.mycompany.myapp",
+    "packageFolder": "com/mycompany/myapp",
+    "serverPort": "8080",
     "authenticationType": "jwt",
     "hibernateCache": "hazelcast",
     "clusteredHttpSession": false,
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
-    "prodDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
     "searchEngine": false,
     "messageBroker": false,
     "buildTool": "gradle",
     "enableSocialSignIn": false,
-    "jwtSecretKey": "58328f72edd5dc2089e4829924a69b908d8fd998",
-    "useSass": false,
+    "jwtSecretKey": "ee245f8de701d57261fd9479d0fe8eb5036dcd81",
+    "useSass": true,
+    "applicationType": "monolith",
     "testFrameworks": [
       "gatling",
       "protractor"
@@ -25,7 +27,9 @@
     "enableTranslation": true,
     "nativeLanguage": "en",
     "languages": [
-      "en"
+      "en",
+      "fr",
+      "de"
     ],
     "travis": true
   }
