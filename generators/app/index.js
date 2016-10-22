@@ -155,8 +155,8 @@ module.exports = yeoman.Base.extend({
             // add dependencies
             if (jhipsterVar.buildTool === 'maven') {
                 jhipsterFunc.addMavenDependency('com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.0');
-            } else if (jhipsterVar.buildTool == 'gradle') {
-                jhipsterFunc.addGradleDependency('com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.0');
+            } else if (jhipsterVar.buildTool === 'gradle') {
+                jhipsterFunc.addGradleDependency('compile', 'com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.0');
             }
             jhipsterFunc.addBowerDependency('stormpath-sdk-angularjs', '1.0.0');
 
