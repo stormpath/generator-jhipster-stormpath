@@ -1,5 +1,3 @@
-addons:
-- firefox: "46.0"
 os:
 - linux
 services:
