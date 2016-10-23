@@ -34,9 +34,11 @@ cd "$HOME"/app
 
 if [ -f "mvnw" ]; then
     ./mvnw package -DskipTests=true -P"$PROFILE"
+    mkdir -p target/reports/e2e/screenshots/
     mv target/*.war app.war
 elif [ -f "gradlew" ]; then
     ./gradlew bootRepackage -P"$PROFILE" -x test
+    mkdir -p build/reports/e2e/screenshots/
     mv build/libs/*.war app.war
 else
     echo "No mvnw or gradlew"
