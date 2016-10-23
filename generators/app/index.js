@@ -116,6 +116,11 @@ module.exports = yeoman.Base.extend({
             this.baseName = jhipsterVar.baseName;
             this.packageName = jhipsterVar.packageName;
             this.angularAppName = jhipsterVar.angularAppName;
+            this.applicationType = jhipsterVar.applicationType;
+            this.websocket = jhipsterVar.websocket;
+            this.devDatabaseType = jhipsterVar.devDatabaseType;
+            this.enableTranslation = jhipsterVar.enableTranslation;
+            this.jhiPrefix = jhipsterVar.jhiPrefix;
             this.webappDir = jhipsterVar.webappDir;
             this.resourceTemplateDir = this.templatePath('src/main/resources/');
             this.javaTemplateDir = this.templatePath('src/main/java/package/');
@@ -250,6 +255,14 @@ module.exports = yeoman.Base.extend({
                 "                        return Auth.authorize();\n" +
                 "                    }\n" +
                 "                ],\n", '');
+            // for those app.state.js files that don't have a trailing comma
+            jhipsterFunc.replaceContent(this.webappDir + 'app/app.state.js', "            resolve: {\n" +
+                "                authorize: ['Auth',\n" +
+                "                    function (Auth) {\n" +
+                "                        return Auth.authorize();\n" +
+                "                    }\n" +
+                "                ]\n" +
+                "            }\n", '');
             // copy templates from src/main/webapp
             var templates = [
                 {from: this.javaTemplateDir + 'config/_SecurityConfiguration.java', to: this.javaDir + 'config/SecurityConfiguration.java'},

@@ -1,7 +1,7 @@
 {
   "generator-jhipster": {
     "applicationType": "monolith",
-    "baseName": "travisPsqlEsNoi18n",
+    "baseName": "travisNoi18n",
     "packageName": "com.mycompany.myapp",
     "packageFolder": "com/mycompany/myapp",
     "authenticationType": "jwt",
@@ -23,6 +23,12 @@
     ],
     "serverPort": "8080",
     "jhiPrefix": "jhi",
-    "travis": true
+    "travis": true,
+    "jhipsterVersion": "3.9.1",
+    "messageBroker": false,
+    "serviceDiscoveryType": false
+  },
+  "generator-jhipster-stormpath": {
+    "authenticationType": "stormpath"
   }
 }
