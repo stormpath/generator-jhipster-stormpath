@@ -296,6 +296,7 @@ module.exports = yeoman.Base.extend({
                 this.jsTestDir + 'spec/app/account/reset',
                 this.jsTestDir + 'spec/app/account/settings',
                 this.jsTestDir + 'spec/app/components',
+                this.jsTestDir + 'spec/app/services/auth',
                 this.jsTestDir + 'spec/app/services',
                 // e2e tests
                 this.jsTestDir + '/e2e/admin'
