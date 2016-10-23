@@ -315,8 +315,14 @@ module.exports = yeoman.Base.extend({
             jhipsterFunc.replaceContent(this.jsTestDir + 'spec/helpers/httpBackend.js', 'api\\\/account', 'me');
 
             // add expectation to password-strength test that navbar.html will be loaded
-            jhipsterFunc.replaceContent(this.jsTestDir + 'spec/app/account/password/password-strength-bar.directive.spec.js',
-                'beforeEach(mockI18nCalls);', 'beforeEach(mockI18nCalls);\n    beforeEach(mockScriptsCalls);');
+            if (this.enableTranslation) {
+                jhipsterFunc.replaceContent(this.jsTestDir + 'spec/app/account/password/password-strength-bar.directive.spec.js',
+                    'beforeEach(mockI18nCalls);', 'beforeEach(mockI18nCalls);\n    beforeEach(mockScriptsCalls);');
+            } else {
+                jhipsterFunc.replaceContent(this.jsTestDir + 'spec/app/account/password/password-strength-bar.directive.spec.js',
+                    'beforeEach(mockApiAccountCall);', 'beforeEach(mockApiAccountCall);\n    beforeEach(mockScriptsCalls);')
+            }
+
 
             // replace account e2e test with one that just verifies the login form
             this.copyFiles([{from: this.jsTestTemplateDir + 'e2e/account/_account.js', to: this.jsTestDir + 'e2e/account/account.js'}]);
