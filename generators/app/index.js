@@ -1,6 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
+var _ = require('lodash');
 var packagejs = require(__dirname + '/../../package.json');
 var fs = require('fs');
 var semver = require('semver');
@@ -121,7 +122,7 @@ module.exports = yeoman.Base.extend({
             this.devDatabaseType = jhipsterVar.devDatabaseType;
             this.enableTranslation = jhipsterVar.enableTranslation;
             this.jhiPrefix = jhipsterVar.jhiPrefix;
-            this.jhiPrefixCapitalized = jhipsterVar.jhiPrefixCapitalized;
+            this.jhiPrefixCapitalized = _.upperFirst(this.jhiPrefix);
             this.webappDir = jhipsterVar.webappDir;
             this.resourceTemplateDir = this.templatePath('src/main/resources/');
             this.javaTemplateDir = this.templatePath('src/main/java/package/');
@@ -160,11 +161,11 @@ module.exports = yeoman.Base.extend({
 
             // add dependencies
             if (jhipsterVar.buildTool === 'maven') {
-                jhipsterFunc.addMavenDependency('com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.0');
+                jhipsterFunc.addMavenDependency('com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.1');
             } else if (jhipsterVar.buildTool === 'gradle') {
-                jhipsterFunc.addGradleDependency('compile', 'com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.0');
+                jhipsterFunc.addGradleDependency('compile', 'com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.1');
             }
-            jhipsterFunc.addBowerDependency('stormpath-sdk-angularjs', '1.0.0');
+            jhipsterFunc.addBowerDependency('stormpath-sdk-angularjs', '1.1.0');
 
             // **** Start of Spring Boot Integration ***** //
 
