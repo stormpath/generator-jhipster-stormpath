@@ -40,13 +40,13 @@ Features we hope to add in a future release:
 
 As this is a [JHipster](http://jhipster.github.io/) module, we expect you have [JHipster and its related tools already installed](https://jhipster.github.io/installation/).
 
-This module requires Jhipster version greater than 3.0 in order to work.
+This module requires JHipster >= 3.0 in order to work.
 
 ```bash
 npm install -g generator-jhipster-stormpath
 ```
 
-Then run the module on a JHipster generated application:
+Install Stormpath on a JHipster generated application:
 
 ```bash
 yo jhipster-stormpath
