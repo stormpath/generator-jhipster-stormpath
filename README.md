@@ -2,11 +2,11 @@
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > JHipster module, Stormpath API integration for Authorization
 
-<div align="center">
+<div>
   <a href="http://jhipster.github.io">
     <img src="https://github.com/stormpath/generator-jhipster-stormpath/raw/master/static/jhipster-logo.png">
   </a>
-  <a href="https://www.stormpath.com/" style="margin-left: 20px">
+  <a href="https://www.stormpath.com/">
     <img width=125px src="https://github.com/stormpath/generator-jhipster-stormpath/raw/master/static/stormpath-logo.png">
   </a>
 </div>
