@@ -1,24 +1,22 @@
 {
   "generator-jhipster": {
-    "jhipsterVersion": "3.9.1",
-    "baseName": "TheForce",
-    "packageName": "com.mycompany.theforce",
-    "packageFolder": "com/mycompany/theforce",
-    "serverPort": "8080",
+    "applicationType": "monolith",
+    "baseName": "jhipsterSampleApplication",
+    "packageName": "io.github.jhipster.sample",
+    "packageFolder": "io/github/jhipster/sample",
     "authenticationType": "jwt",
     "hibernateCache": "ehcache",
     "clusteredHttpSession": false,
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
-    "prodDatabaseType": "mysql",
+    "prodDatabaseType": "h2Disk",
     "searchEngine": false,
     "messageBroker": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
     "jwtSecretKey": "58328f72edd5dc2089e4829924a69b908d8fd998",
     "useSass": false,
-    "applicationType": "monolith",
     "testFrameworks": [
       "gatling",
       "protractor"
@@ -28,6 +26,10 @@
     "nativeLanguage": "en",
     "languages": [
       "en"
-    ]
+    ],
+    "travis": true,
+    "jhipsterVersion": "3.9.1",
+    "serverPort": "8080",
+    "serviceDiscoveryType": false
   }
 }
