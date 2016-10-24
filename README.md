@@ -38,7 +38,7 @@ Features we hope to add in a future release:
 
 ## Installation
 
-As this is a [JHipster](http://jhipster.github.io/) module, we expect you have [JHipster and its related tools already installed](http://jhipster.github.io/installation.html).
+As this is a [JHipster](http://jhipster.github.io/) module, we expect you have [JHipster and its related tools already installed](https://jhipster.github.io/installation/).
 
 This module requires Jhipster version greater than 3.0 in order to work.
 
