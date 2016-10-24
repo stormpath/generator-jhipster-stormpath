@@ -74,8 +74,8 @@ module.exports = yeoman.Base.extend({
         checkJHVersion: function () {
             var supportedJHVersion = packagejs.dependencies['generator-jhipster'];
             if (jhipsterVar.jhipsterVersion && !semver.satisfies(jhipsterVar.jhipsterVersion, supportedJHVersion)) {
-                this.env.error(chalk.red.bold('ERROR!') + ` I support only JHipster versions greater than ${supportedJHVersion}...
-          If you want to use Stormpath with an older JHipster version, please contact support@stormpath.com.`);
+                this.env.error(chalk.red.bold('ERROR!') + ' I support only JHipster versions greater than ${supportedJHVersion}...');
+                this.env.error('If you want to use Stormpath with an older JHipster version, please contact support@stormpath.com.');
             }
 
             var security
