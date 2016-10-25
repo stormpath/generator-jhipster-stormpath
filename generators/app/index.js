@@ -180,7 +180,7 @@ module.exports = yeoman.Base.extend({
                 jhipsterFunc.rewriteFile(ehCacheLocation, 'ehcache-add-entry', ehcacheEntries);
 
                 // duplicate these changes in test EhCache Config
-                jhipsterFunc.replaceContent(this.testDir + 'resources/ehcache.xml', "</ehcache>", '    \n' + ehcacheEntries + '\n</ehcache>');
+                jhipsterFunc.replaceContent(this.testDir + 'resources/ehcache.xml', "</ehcache>", '\n    ' + ehcacheEntries + '\n</ehcache>');
             }
 
             // make Stormpath log at WARN level
