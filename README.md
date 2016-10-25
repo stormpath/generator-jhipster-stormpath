@@ -52,6 +52,8 @@ Install Stormpath on a JHipster generated application:
 yo jhipster-stormpath
 ```
 
+**NOTE:** To see the Administration menu, you will need a ROLE_ADMIN group configured in Stormpath. Only users in this group will be able to see the Administration menu.
+
 ## License
 
 Apache-2.0 © [Stormpath](https://stormpath.com)

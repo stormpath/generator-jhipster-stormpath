@@ -115,6 +115,7 @@ module.exports = yeoman.Base.extend({
 
         setupGlobalVar: function () {
             this.baseName = jhipsterVar.baseName;
+            this.capitalizedBaseName = _.upperFirst(this.baseName);
             this.packageName = jhipsterVar.packageName;
             this.angularAppName = jhipsterVar.angularAppName;
             this.applicationType = jhipsterVar.applicationType;
