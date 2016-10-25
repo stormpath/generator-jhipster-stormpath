@@ -1,6 +1,6 @@
 {
   "name": "generator-jhipster-stormpath",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JHipster module, Stormpath integration for JHipster application",
   "keywords": [
     "yeoman-generator",
