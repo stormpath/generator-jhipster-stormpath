@@ -247,10 +247,15 @@ module.exports = yeoman.Base.extend({
             jhipsterFunc.addAngularJsModule('stormpath.templates');
 
             // add call to see if Stormpath user exists
-            jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "['stateHandler'", "['stateHandler', '$user'");
-            jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "run(stateHandler", "run(stateHandler, $user");
+            jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "['stateHandler'", "['stateHandler', '$user', '$stormpath'");
+            jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "run(stateHandler", "run(stateHandler, $user, $stormpath");
             jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "stateHandler.initialize();\n", "stateHandler.initialize();\n" +
+                "        $stormpath.uiRouter({\n" +
+                "            defaultPostLoginState: 'home',\n" +
+                "            loginState: 'login'\n" +
+                "        });\n" +
                 "        // check to see if Stormpath user exists\n        $user.get();\n");
+
 
             // remove Auth from app.state.js
             jhipsterFunc.replaceContent(this.webappDir + 'app/app.state.js', "                authorize: ['Auth',\n" +
