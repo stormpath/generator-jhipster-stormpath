@@ -19,7 +19,7 @@
             vm.account = $rootScope.user;
         }
 
-        $rootScope.$on('$stateChangeUnauthorized', function () {
+        $scope.$on('$stateChangeUnauthorized', function () {
             $state.go('accessdenied');
         });
 
