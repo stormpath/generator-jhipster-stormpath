@@ -42,5 +42,8 @@ describe('JHipster generator Stormpath', function () {
         it('jhiPrefixCapitalized works in navbar.html', function () {
             assert.fileContent('src/main/webapp/app/layouts/navbar/navbar.html', /JhiLanguageController as languageVm/);
         });
+        it('proxyPath /login added in serve.js', function () {
+            assert.fileContent('gulp/serve.js', /\/login/);
+        });
     });
 });

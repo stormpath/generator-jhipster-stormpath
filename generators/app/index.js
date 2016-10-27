@@ -168,6 +168,9 @@ module.exports = yeoman.Base.extend({
             }
             jhipsterFunc.addBowerDependency('stormpath-sdk-angularjs', '1.1.0');
 
+            // Add additional paths to gulp/serve.js
+            this.copyFiles([{from: this.templatePath('gulp/') + '_serve.js', to: 'gulp/serve.js'}]);
+
             // **** Start of Spring Boot Integration ***** //
 
             // add Stormpath properties to Spring Boot's configuration
