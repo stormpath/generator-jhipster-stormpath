@@ -166,7 +166,7 @@ module.exports = yeoman.Base.extend({
             } else if (jhipsterVar.buildTool === 'gradle') {
                 jhipsterFunc.addGradleDependency('compile', 'com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.2');
             }
-            jhipsterFunc.addBowerDependency('stormpath-sdk-angularjs', '1.1.0');
+            jhipsterFunc.addBowerDependency('stormpath-sdk-angularjs', '1.1.1');
 
             // Add additional paths to gulp/serve.js
             this.copyFiles([{from: this.templatePath('gulp/') + '_serve.js', to: 'gulp/serve.js'}]);
