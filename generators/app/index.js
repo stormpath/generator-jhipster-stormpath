@@ -166,7 +166,10 @@ module.exports = yeoman.Base.extend({
             } else if (jhipsterVar.buildTool === 'gradle') {
                 jhipsterFunc.addGradleDependency('compile', 'com.stormpath.spring', 'stormpath-spring-security-webmvc-spring-boot-starter', '1.1.2');
             }
-            jhipsterFunc.addBowerDependency('stormpath-sdk-angularjs', '1.1.0');
+            jhipsterFunc.addBowerDependency('stormpath-sdk-angularjs', '1.1.1');
+
+            // Add additional paths to gulp/serve.js
+            this.copyFiles([{from: this.templatePath('gulp/') + '_serve.js', to: 'gulp/serve.js'}]);
 
             // **** Start of Spring Boot Integration ***** //
 
@@ -247,9 +250,15 @@ module.exports = yeoman.Base.extend({
             jhipsterFunc.addAngularJsModule('stormpath.templates');
 
             // add call to see if Stormpath user exists
-            jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "['stateHandler'", "['stateHandler', '$user'");
-            jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "run(stateHandler", "run(stateHandler, $user");
+            jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "['stateHandler'", "['stateHandler', '$user', '$stormpath'");
+            jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "run(stateHandler", "run(stateHandler, $user, $stormpath");
             jhipsterFunc.replaceContent(this.webappDir + 'app/app.module.js', "stateHandler.initialize();\n", "stateHandler.initialize();\n" +
+                "        // add ui-router config so stateChangeInterceptor is added\n" +
+                "        // https://github.com/stormpath/generator-jhipster-stormpath/issues/12\n" +
+                "        $stormpath.uiRouter({\n" +
+                "            defaultPostLoginState: 'home',\n" +
+                "            loginState: 'login'\n" +
+                "        });\n" +
                 "        // check to see if Stormpath user exists\n        $user.get();\n");
 
             // remove Auth from app.state.js
